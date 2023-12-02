@@ -19,8 +19,9 @@ int pacmanX, pacmanY;
 int numDots;
 int score;
 void welcomeScreen() {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    system("cls");
+//this function is for the first appearance of game 
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);// used  for colour change
+    system("cls");//terminal screen ko clear karne ke liye 
 
     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
  
@@ -37,7 +38,7 @@ void welcomeScreen() {
     printf("Welcome to the Pacman Game! Press any key to play.\n");
     SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
     //printf("Welcome to the Pacman Game! Press any key to play.\n");
-    getch();
+    getch();//keyboard se koi bhi key input lene ke liye 
 }
 void setupBoard() {
     int i, j;
@@ -68,7 +69,7 @@ void setupBoard() {
         obstacleY[i] = y;
     }
 
-   //To display pacman (c in blue colour) on the screen
+   //To display pacman (c in yellow colour) on the screen
     do 
     {
         pacmanX = rand() % (20 - 2) + 1;
@@ -118,18 +119,18 @@ void drawBoard()
             } 
             else if (board[i][j] == OBSTACLE) 
             {
-                SetConsoleTextAttribute(hConsole, 5); //  
+                SetConsoleTextAttribute(hConsole, 5); //  purple colour
             } 
             else if (board[i][j] == WALL ) 
             {
-                SetConsoleTextAttribute(hConsole, 2); //  
+                SetConsoleTextAttribute(hConsole, 2); //  green colour
             } 
               else 
             {
                 SetConsoleTextAttribute(hConsole, 15); //  white colour 
             }
 
-            printf("%c ", board[i][j]);
+            printf("%c ", board[i][j]);//print whole board setup
         }
         printf("\n");
     }
@@ -137,7 +138,7 @@ void drawBoard()
     SetConsoleTextAttribute(hConsole, 15); //  To reset the color to white
 
     printf("Score: %d\n", score);
-    printf("Use WASD or arrow keys to move Pacman\n");
+    printf("Use  arrow keys to move Pacman\n");
     printf("you have to escape from X and &");
 }
 
@@ -147,7 +148,7 @@ void updateBoard(int newX, int newY,int p)
     if (board[newX][newY] == OBSTACLE) 
     {
         printf("\nGame Over! andho ki tarah na chale (you hit #)!\n");
-        exit(0);
+        exit(0);//exit from whole code
     }
 
     //To express whether ghost has caught the pacman or not
@@ -172,7 +173,7 @@ void updateBoard(int newX, int newY,int p)
     }
 
     board[pacmanX][pacmanY] = PACMAN;
-//To chase the pacman by the gost randomly
+//To chase the pacman by the gost 
     for (int i = 0; i < 4; i++) 
     {
         int newGhostX = ghostX[i];
@@ -196,7 +197,7 @@ void updateBoard(int newX, int newY,int p)
             newGhostY--;
         }
        if(board[newGhostX][newGhostY] == WALL&&board[newGhostX][newGhostY]==OBSTACLE&&board[newGhostX][newGhostY]==GHOST)
-       {
+       {//because there are already objects at new position of ghost so now it will move randomely  
              int direction = rand() % 4;
             newGhostX = ghostX[i];
             newGhostY = ghostY[i];
@@ -261,7 +262,7 @@ void updateBoard(int newX, int newY,int p)
         if (board[newGhostX][newGhostY] != WALL&&board[newGhostX][newGhostY]!=OBSTACLE&&board[newGhostX][newGhostY]!=GHOST) 
         {
 
-            char tem=board[newGhostX][newGhostY];
+            char tem=board[newGhostX][newGhostY];// for removing temporary dots to place ghost and after that it is placing dot at previous position of ghost
             board[ghostX[i]][ghostY[i]] = ' ';
             ghostX[i] = newGhostX;
             ghostY[i] = newGhostY;
@@ -285,7 +286,7 @@ void updateBoard(int newX, int newY,int p)
 
 
 int main()
- {welcomeScreen();
+ {welcomeScreen();//callimg function
     
     srand((unsigned int)time(NULL));//every time new setup of game with new positions will come
     char input;
@@ -304,39 +305,23 @@ int p=0;
 
             switch (input) 
             {
-                case 'w':
+                case 72://to move up
                     newX = pacmanX - 1;
                     newY = pacmanY;
                     break;
-                case 's':
+                case 80://for down
                     newX = pacmanX + 1;
                     newY = pacmanY;
                     break;
-                case 'a':
+                case 75://left
                     newX = pacmanX;
                     newY = pacmanY - 1;
                     break;
-                case 'd':
+                case 77://right
                     newX = pacmanX;
                     newY = pacmanY + 1;
                     break;
-                case 72:
-                    newX = pacmanX - 1;
-                    newY = pacmanY;
-                    break;
-                case 80:
-                    newX = pacmanX + 1;
-                    newY = pacmanY;
-                    break;
-                case 75:
-                    newX = pacmanX;
-                    newY = pacmanY - 1;
-                    break;
-                case 77:
-                    newX = pacmanX;
-                    newY = pacmanY + 1;
-                    break;
-                default:
+                default://eske alava koi input par koi change nahi
                     newX = pacmanX;
                     newY = pacmanY;
                     break;
