@@ -177,7 +177,7 @@ void updateBoard(int newX, int newY,int p)
     {
         int newGhostX = ghostX[i];
         int newGhostY = ghostY[i];
-    if(p%4==0)
+    if(p%4==0)  //If in p%x we increase x then game will be easy and if we decrease x level will become more hard
     {
         if(pacmanX>newGhostX)
         {
@@ -287,7 +287,7 @@ void updateBoard(int newX, int newY,int p)
 int main()
  {welcomeScreen();
     
-    srand((unsigned int)time(NULL));
+    srand((unsigned int)time(NULL));//every time new setup of game with new positions will come
     char input;
     
     int newX, newY;
