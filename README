@@ -1,0 +1,36 @@
+Pacman Game c code
+Overview
+This is a simple console-based Pacman game written in C. The game involves controlling Pacman to eat dots while avoiding ghosts and obstacles.
+
+Environment Setup
+This game is designed to run on a Windows environment.
+Ensure that you have a C compiler installed (e.g., [MinGW](http://mingw.org/) for Windows).
+
+How to Execute
+
+1.Compile the Code
+   Open a command prompt
+   Navigate to the directory containing the source code files
+   Use a C compiler to compile the code
+
+2. Run the Executable
+   After successful compilation, run the executable:
+     ```bash
+     pacman_game.exe
+     ```
+3. Game Controls
+   Use arrow keys (Up, Down, Left, Right) to control Pacman
+   Eat dots to score points and avoid ghosts and obstacles
+   Press any key to start the game.
+
+4. Gameplay
+   The game ends when all dots are eaten or when Pacman collides with a ghost or obstacle.
+
+5. Game Over
+   If you win (eat all dots), the game will display "Game Over! You won!"
+   If you lose (collide with a ghost or obstacle), the game will display an appropriate message.
+                                             
+Additional Notes
+The game uses Windows-specific libraries, and it may not work as intended on other operating systems.//it is not for mac and linux
+Adjustments to the code may be needed for different compilers or environments.//for mac and linux there will sone difference in libraries
+
